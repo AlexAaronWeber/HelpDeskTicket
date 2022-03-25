@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace HelpDesk.Models
+{
+    public partial class User
+    {
+        public User()
+        {
+            FavTickets = new HashSet<FavTicket>();
+            TicketResponders = new HashSet<Ticket>();
+            TicketUsers = new HashSet<Ticket>();
+        }
+
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+
+        public virtual ICollection<FavTicket> FavTickets { get; set; }
+        public virtual ICollection<Ticket> TicketResponders { get; set; }
+        public virtual ICollection<Ticket> TicketUsers { get; set; }
+    }
+}
