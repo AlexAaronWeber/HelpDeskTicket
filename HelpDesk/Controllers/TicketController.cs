@@ -12,7 +12,6 @@ namespace HelpDesk.Controllers
 
 
         [HttpGet]
-
         public List<Ticket> GetTickets()
         {
             return context.Tickets.ToList();
@@ -27,11 +26,10 @@ namespace HelpDesk.Controllers
         [HttpGet("{title}")]
         public List<Ticket> GetTicketByTitle(string title)
         {
-            return context.Tickets.Where(x => x.Title.Contains(title)).ToList();   
+            return context.Tickets.Where(x => x.Title.Contains(title)).ToList();
         }
 
         [HttpPost]
-
         public Ticket CreateTicket(Ticket newTicket)
         {
             context.Tickets.Add(newTicket);
@@ -39,8 +37,9 @@ namespace HelpDesk.Controllers
             return newTicket;
         }
 
-        [HttpPut("Resolve/{id}")]
-        public Ticket AddTicketResolution(string resolution, int responderId, int id)
+        [HttpPut("resolve/{id}")]
+        // example: /api/Ticket/Resolve/1?resolution=resolved&responderId=2
+        public Ticket AddTicketResolution(int id, string resolution, int responderId)
         {
             Ticket result = null;
 
@@ -52,27 +51,16 @@ namespace HelpDesk.Controllers
             return result;
         }
 
-        //[HttpPost]
-        //public List<Ticket> BookmarkTicket(Ticket result)
-        //{
-        //    result = null;
-        //    List<Ticket> favTickets = new List<Ticket>();
-        //    result = context.Tickets. FirstOrDefault(r => r.Id == result.Id);
-        //    favTickets.Add(result);
-        //    return favTickets;
-            
-        //}
+        [HttpDelete("delete/{id}")]
+        public Ticket DeleteTicket(int id) //, int userId
+        {
+            Ticket result = null;
 
-        //[HttpPost]
-        //public void BookmarkTicket(int ticketId, int userId)
-        //{
-        //    FavTicket favTicket = new FavTicket();
-        //    Ticket result = null;
-        //    User user = null;
-        //    result.Id = ticketId;
-        //    favTicket.TicketId =
-        //}
+            result = context.Tickets.FirstOrDefault(t => t.Id == id);
+            context.Tickets.Remove(result);
+            context.SaveChanges();
 
-
+            return result;
+        }
     }
 }
