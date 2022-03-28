@@ -1,5 +1,5 @@
 <div *ngFor="let t of tickets">
-    <h1>{{t.title}}</h1>
-    <p>{{t.question}}</p>
-    <button (click)="DeleteTicket(t.ticketId)">Delete</button>
+    <h1>{{ t.title }}</h1>
+    <p>{{ t.question }}</p>
+    <button (click)="DeleteTicket(t.id)">Delete</button>
 </div>

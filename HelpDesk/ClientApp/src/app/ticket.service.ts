@@ -29,7 +29,7 @@ export class TicketService {
 
   DeleteTicket(ticketId: Number){
     
-    return this.http.Delete(`${this.baseUrl + this.endpoint}/delete/${ticketId}`);
+    return this.http.delete(`${this.baseUrl + this.endpoint}/delete/${ticketId}`);
 
   }
 }
