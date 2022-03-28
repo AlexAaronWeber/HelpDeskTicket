@@ -26,4 +26,10 @@ export class TicketService {
     let fullUrl: string = this.baseUrl + this.endpoint;
     return this.http.post(fullUrl, ticket);
   }
+
+  DeleteTicket(ticketId: Number){
+    
+    return this.http.Delete(`${this.baseUrl + this.endpoint}/delete/${ticketId}`);
+
+  }
 }

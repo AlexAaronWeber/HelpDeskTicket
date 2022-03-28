@@ -12,10 +12,18 @@ export class TicketComponent implements OnInit {
   tickets:Ticket[] = [];
   constructor(private ticketService:TicketService) { }
 
+
   ngOnInit(): void {
     this.ticketService.getAllTickets().subscribe((response:Ticket[]) => {
       this.tickets = response;
       console.log(response);
     })    
+  
+  }
+
+  DeleteTicket(ticketId: Number):void{
+    this.ticketService.DeleteTicket(ticketId).subscribe((response:any) => {
+      console.log(response);
+    })
   }
 }
