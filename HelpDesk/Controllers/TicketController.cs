@@ -32,6 +32,8 @@ namespace HelpDesk.Controllers
         [HttpPost]
         public Ticket CreateTicket(Ticket newTicket)
         {
+            newTicket.ResponderId = null;
+            // newTicket.respo
             context.Tickets.Add(newTicket);
             context.SaveChanges();
             return newTicket;

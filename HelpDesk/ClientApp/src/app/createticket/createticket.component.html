@@ -1,0 +1,9 @@
+<form class="form" #addForm="ngForm" (ngSubmit)="addTicket(addForm)">
+    title:<input name="title" ngModel />
+    <br />
+    question:<input name="question" ngModel />
+    <br />
+    userId:<input name="userId" type="number" ngModel />
+    <br />
+    <button>Add Ticket</button>
+  </form>
