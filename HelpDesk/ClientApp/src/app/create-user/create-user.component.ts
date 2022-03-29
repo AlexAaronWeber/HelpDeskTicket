@@ -26,6 +26,11 @@ export class CreateUserComponent implements OnInit {
       ticketResponders: [],
       ticketUsers: []
     };
-  }
-
+    this.userService.addUser(NewUser).subscribe((response:any) => {
+      console.log("Ticket has been added");
+      console.log(response)
+    
+  });
+}
+  
 }

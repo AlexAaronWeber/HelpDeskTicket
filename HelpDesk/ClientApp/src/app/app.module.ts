@@ -38,8 +38,9 @@ import { CreateUserComponent } from './create-user/create-user.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'ticket', component:TicketComponent},
       { path: 'favticket/:id', component:FavticketComponent},
-      { path: 'createticket', component:CreateticketComponent }
-      
+      { path: 'createticket', component:CreateticketComponent },
+      { path: 'createuser', component:CreateUserComponent }
+    
     ])
   ],
   providers: [],
