@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Favticket } from '../favticket';
 import { Ticket } from '../ticket';
 import { TicketService } from '../ticket.service';
 
@@ -10,6 +11,7 @@ import { TicketService } from '../ticket.service';
 export class TicketComponent implements OnInit {
 
   tickets:Ticket[] = [];
+  userId:number = 1;
   constructor(private ticketService:TicketService) { }
 
 
@@ -18,12 +20,20 @@ export class TicketComponent implements OnInit {
       this.tickets = response;
       console.log(response);
     })    
-  
   }
 
-  DeleteTicket(ticketId: Number):void{
+  DeleteTicket(ticketId: number):void{
     this.ticketService.DeleteTicket(ticketId).subscribe((response:any) => {
       console.log(response);
+      this.tickets.splice(ticketId,1);
     })
   }
+
+  BookmarkTicket(ticketId:number):any{
+    this.ticketService.BookmarkTicket(ticketId, this.userId).subscribe((response:any) => {
+      console.log(response);
+    })
+    
+  }
+
 }

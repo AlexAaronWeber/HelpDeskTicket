@@ -57,7 +57,13 @@ namespace HelpDesk.Controllers
         public Ticket DeleteTicket(int id) //, int userId
         {
             Ticket result = null;
-
+            List<FavTicket> result2 = null;
+            //Removes references of this ticket in the FavTicketTable
+            result2 = context.FavTickets.Where(x => x.TicketId == id).ToList();
+            if(result2.Count > 0)
+            {
+                context.FavTickets.RemoveRange(result2);
+            }
             result = context.Tickets.FirstOrDefault(t => t.Id == id);
             context.Tickets.Remove(result);
             context.SaveChanges();

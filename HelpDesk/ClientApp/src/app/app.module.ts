@@ -13,6 +13,7 @@ import { TicketComponent } from './ticket/ticket.component';
 import { UserComponent } from './user/user.component';
 import { FavticketComponent } from './favticket/favticket.component';
 import { CreateticketComponent } from './createticket/createticket.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CreateticketComponent } from './createticket/createticket.component';
     TicketComponent,
     UserComponent,
     FavticketComponent,
-    CreateticketComponent
+    CreateticketComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,6 +39,7 @@ import { CreateticketComponent } from './createticket/createticket.component';
       { path: 'ticket', component:TicketComponent},
       { path: 'favticket/:id', component:FavticketComponent},
       { path: 'createticket', component:CreateticketComponent }
+      
     ])
   ],
   providers: [],

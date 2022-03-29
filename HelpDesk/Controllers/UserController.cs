@@ -17,6 +17,14 @@ namespace HelpDesk.Controllers
         {
             return context.Users.ToList();
         }
+
+        [HttpPost]
+        public User createUser(User newUser)
+        {
+            context.Users.Add(newUser);
+            context.SaveChanges();
+            return newUser;
+        }
         
 
     }

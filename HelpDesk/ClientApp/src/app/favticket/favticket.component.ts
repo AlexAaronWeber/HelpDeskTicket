@@ -21,5 +21,8 @@ export class FavticketComponent implements OnInit {
       console.log(response)
     })
   }
+  
+  
+
 
 }

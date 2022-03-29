@@ -27,9 +27,13 @@ export class TicketService {
     return this.http.post(fullUrl, ticket);
   }
 
-  DeleteTicket(ticketId: Number){
+  DeleteTicket(ticketId: number){
     
     return this.http.delete(`${this.baseUrl + this.endpoint}/delete/${ticketId}`);
 
+  }
+
+  BookmarkTicket(ticketId:number, userId:number){
+    return this.http.post(`${this.baseUrl}api/FavTicket/Bookmark/${ticketId}&${userId}`, {});
   }
 }
