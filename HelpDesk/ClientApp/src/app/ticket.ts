@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export interface Ticket {
     id:          number;
     title:       string;
@@ -5,7 +7,7 @@ export interface Ticket {
     userId:      number;
     responderId: number;
     resolution:  string;
-    responder:   null;
-    user:        null;
+    responder:   User;
+    user:        User;
     favTickets:  any[];
 }

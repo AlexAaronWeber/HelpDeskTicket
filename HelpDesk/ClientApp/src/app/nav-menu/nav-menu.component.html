@@ -42,9 +42,19 @@
               >Ticket</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isLoggedIn() == false">
             <a class="nav-link text-dark" [routerLink]="['/createuser']"
-              >User</a
+              > Create User</a
+            >
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/login']">
+              {{ loginText }}</a
+            >
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isLoggedIn()">
+            <a class="nav-link text-dark" [routerLink]="['/favticket/:id']"
+              > Favorites</a
             >
           </li>
         </ul>

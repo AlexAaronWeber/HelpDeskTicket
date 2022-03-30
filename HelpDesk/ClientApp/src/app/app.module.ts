@@ -44,7 +44,8 @@ import { LoginComponent } from './login/login.component';
       { path: 'ticketdeets/:id', component:TicketDetailsComponent},
       { path: 'favticket/:id', component:FavticketComponent},
       { path: 'createticket', component:CreateticketComponent },
-      { path: 'createuser', component:CreateUserComponent }
+      { path: 'createuser', component:CreateUserComponent },
+      { path: 'login', component:LoginComponent }
     
     ])
   ],

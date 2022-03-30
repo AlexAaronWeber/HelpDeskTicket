@@ -1,6 +1,7 @@
 ﻿using HelpDesk.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HelpDesk.Controllers
 {
@@ -11,22 +12,23 @@ namespace HelpDesk.Controllers
         TicketsDBContext context = new TicketsDBContext();
 
         [HttpPost("Bookmark/{ticketId}&{userId}")]
-        public void BookmarkTicket(int ticketId, int userId)
+        public FavTicket BookmarkTicket(int ticketId, int userId)
         {
-            if(context.FavTickets.Where(t => t.UserId == userId && t.TicketId == ticketId).Count() == 0)
+            FavTicket NewFavTicket = new FavTicket();
+            if (context.FavTickets.Where(t => t.UserId == userId && t.TicketId == ticketId).Count() == 0)
             {
-                FavTicket favTicket = new FavTicket();
-                favTicket.TicketId = ticketId;
-                favTicket.UserId = userId;
-                context.FavTickets.Add(favTicket);
+                NewFavTicket.TicketId = ticketId;
+                NewFavTicket.UserId = userId;
+                context.FavTickets.Add(NewFavTicket);
                 context.SaveChanges();
-            }            
+            }
+            return NewFavTicket;
         }
 
         [HttpGet("GetAll/{userId}")]
         public List<FavTicket> GetAllFavTickets(int userId)
         {
-            return context.FavTickets.Where(t => t.UserId == userId).ToList();
+            return context.FavTickets.Include(fav => fav.Ticket).Where(t => t.UserId == userId).ToList();
         }
     }
 }

@@ -1,12 +1,12 @@
 <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" *ngIf="isLoggedIn() == false">
     <label for="userName">Name</label>
-    <input type="text" name="userName" ngModel required>
-    <label for="passWord">Password</label>
-    <input type="password" name="passWord" ngModel required>
+    <input type="text" name="username" ngModel required>
+    <label for="password">Password</label>
+    <input type="password" name="password" ngModel required>
     <button>Login</button>
 </form>
 
-<div>
+<div *ngIf="isLoggedIn()">
     <h1>Are you sure you want to log out?</h1>
     <button (click)="logout()">Logout</button>
 </div>

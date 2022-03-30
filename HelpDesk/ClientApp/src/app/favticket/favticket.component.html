@@ -1,1 +1,4 @@
-<p>favticket works!</p>
+<div *ngFor="let f of favTickets">
+    {{f.ticketId}} {{f.userId}}
+    {{f.ticket.title}} {{f.ticket.question}}   
+</div>

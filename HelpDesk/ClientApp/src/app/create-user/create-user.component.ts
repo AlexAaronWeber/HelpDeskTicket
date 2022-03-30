@@ -18,10 +18,12 @@ export class CreateUserComponent implements OnInit {
   addUser(form:NgForm){
     let NewName:string = form.form.value.name;
     let NewEmail:string = form.form.value.email;
+    let NewPassword:string = form.form.value.password;
     let NewUser:User = {
       id: 0,
       name: NewName,
       email: NewEmail,
+      password: NewPassword,
       favTickets: [],
       ticketResponders: [],
       ticketUsers: []

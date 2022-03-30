@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { LoginService } from './login.service';
 import { Ticket } from './ticket';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ import { Ticket } from './ticket';
 export class TicketService {
 
   endpoint: string = "api/Ticket";
-  constructor(private http:HttpClient, @Inject('BASE_URL') private baseUrl:string) { }
+  constructor(private http:HttpClient, @Inject('BASE_URL') private baseUrl:string, private loginService:LoginService) { }
 
   getAllTickets():any{
     return this.http.get(this.baseUrl + "api/Ticket")
@@ -33,15 +35,12 @@ export class TicketService {
 
   }
 
-  // ResolveTicket(id:number, resolution:string, responderId:number){
-  //   return this.http.put(`${this.baseUrl}api/Ticket/resolve/${id}?resolution=${resolution}&responderId=${responderId}`);
-  // }
-
   ResolveTicket (ticketId:number, resolution:string, responderId:number){
     return this.http.patch(`${this.baseUrl}api/Ticket/resolve/${ticketId}?resolution=${resolution}&responderId=${responderId}`,{});
   }
 
-  BookmarkTicket(ticketId:number, userId:number){
-    return this.http.post(`${this.baseUrl}api/FavTicket/Bookmark/${ticketId}&${userId}`, {});
+  BookmarkTicket(ticketId:number){
+    let myUser:User = this.loginService.getLogin();
+    return this.http.post(`${this.baseUrl}api/FavTicket/Bookmark/${ticketId}&${myUser.id}`, {});
   }
 }

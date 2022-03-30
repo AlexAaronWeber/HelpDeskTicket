@@ -15,14 +15,9 @@ export class FavticketComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    let id : number = Number(this.route.snapshot.paramMap.get("id"));
-    this.favTicketService.getAllFavTickets(id).subscribe((response:Favticket[]) => {
+    this.favTicketService.getAllFavTickets().subscribe((response:Favticket[]) => {
       this.favTickets = response;
       console.log(response)
     })
   }
-  
-  
-
-
 }

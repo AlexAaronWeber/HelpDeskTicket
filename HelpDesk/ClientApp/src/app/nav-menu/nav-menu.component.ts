@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -6,8 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
-  isExpanded = false;
 
+  constructor(private loginService:LoginService){}
+
+  isExpanded = false;
+  loginText = "Log in";
+
+  isLoggedIn():boolean{
+    if(this.loginService.getLogin() == null){
+      this.loginText = "Log in"
+      return false;
+    }
+    else {
+      this.loginText = "Log out"
+      return true;
+    }
+  }
+  
   collapse() {
     this.isExpanded = false;
   }

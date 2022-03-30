@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   login(form: NgForm){
     this.userService.login(form.form.value.username, form.form.value.password).subscribe((response:User)=>{
+      console.log(response)
         if(response != null){
           this.loginService.login(response);
         }

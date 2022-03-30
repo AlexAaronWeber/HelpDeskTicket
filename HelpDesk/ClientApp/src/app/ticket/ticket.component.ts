@@ -24,6 +24,8 @@ export class TicketComponent implements OnInit {
   }
 
   DeleteTicket(ticketId: number):void{
+    let index: number = this.tickets.findIndex(t => t.id == ticketId);
+    this.tickets.splice(index, 1);
     this.ticketService.DeleteTicket(ticketId).subscribe((response:any) => {
       console.log(response);
       this.tickets.splice(ticketId,1);
@@ -31,7 +33,7 @@ export class TicketComponent implements OnInit {
   }
 
   BookmarkTicket(ticketId:number):any{
-    this.ticketService.BookmarkTicket(ticketId, this.userId).subscribe((response:any) => {
+    this.ticketService.BookmarkTicket(ticketId).subscribe((response:any) => {
       console.log(response);
     }) 
   }
