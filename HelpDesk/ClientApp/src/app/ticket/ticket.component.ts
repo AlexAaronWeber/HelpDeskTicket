@@ -4,6 +4,7 @@ import { Favticket } from '../favticket';
 import { Ticket } from '../ticket';
 import { TicketService } from '../ticket.service';
 
+
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
@@ -11,6 +12,7 @@ import { TicketService } from '../ticket.service';
 })
 export class TicketComponent implements OnInit {
 
+  
   tickets:Ticket[] = [];
   userId:number = 1;
   constructor(private ticketService:TicketService) { }
@@ -36,6 +38,10 @@ export class TicketComponent implements OnInit {
     this.ticketService.BookmarkTicket(ticketId).subscribe((response:any) => {
       console.log(response);
     }) 
+  }
+
+  addNewTicket(newT:Ticket){
+    this.tickets.push(newT);
   }
 
   // ResolveTicket(ticketId:number, resolution:string, responderId:number){

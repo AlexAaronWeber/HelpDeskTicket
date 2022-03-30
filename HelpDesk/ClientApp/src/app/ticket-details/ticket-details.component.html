@@ -2,14 +2,15 @@
 
 <div>
     <h3>{{result.title}}</h3>
-    <!-- <p>{{result.user}}</p> -->
+    <p>{{result.user}}</p>
     <p>{{result.question}}</p>
-    <!-- <p>{{result.resolution}}</p> needs to be ngIf -->
-    <!-- <p>{{result.responder}}</p> needs to be ngIf -->    
-        <!-- <form class="form" #addForm="ngForm" (ngSubmit)="ResolveTicket(addForm)">
+    <p>{{result.resolution}}</p> 
+    <p>{{result.responder}}</p>  
+        <form class="form" #addForm="ngForm" (ngSubmit)="ResolveTicket(result.id, addForm)">
             Answer: <input type="text" name="answer" ngModel />
+            <button>Submit</button>
         </form>
-    <button>Submit</button> -->
+    
 </div>
 
 

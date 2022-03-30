@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../login.service';
 import { Ticket } from '../ticket';
@@ -22,11 +23,12 @@ result:Ticket = {} as Ticket;
     });
   }
 
-  ResolveTicket(ticketId:number, resolution:string, responderId:number): void {
+  ResolveTicket(ticketId:number, form:NgForm): void {
     if(this.loginService.getLogin() != null){
       let myUser:User = this.loginService.getLogin();
-      this.ticketService.ResolveTicket(ticketId, resolution, responderId).subscribe((response: any) => {
-        console.log(response)
+      this.ticketService.ResolveTicket(ticketId, form.form.value.answer, myUser.id).subscribe((response: any) => {
+        console.log(response);
+        this.result.resolution = form.form.value.answer;
       })
     }    
   }

@@ -5,6 +5,7 @@ import { LoginService } from '../login.service';
 import { Ticket } from '../ticket';
 import { TicketService } from '../ticket.service';
 import { User } from '../user';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-createticket',
@@ -12,6 +13,8 @@ import { User } from '../user';
   styleUrls: ['./createticket.component.css']
 })
 export class CreateticketComponent implements OnInit {
+
+  @Output() result = new EventEmitter<Ticket>();
 
   constructor(private ticketService:TicketService, private loginService:LoginService, private router:Router) { }
 
@@ -37,6 +40,7 @@ export class CreateticketComponent implements OnInit {
     this.ticketService.CreateTicket(NewTicket).subscribe((response:any) => {
       console.log("Ticket has been added");
       console.log(response)
+      this.result.emit(response);
     });
     }
     else{
