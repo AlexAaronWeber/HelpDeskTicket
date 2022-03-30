@@ -28,7 +28,7 @@ namespace HelpDesk.Controllers
         [HttpGet("ById/{id}")]
         public Ticket GetTicketById(int id)
         {
-            return context.Tickets.Include(t => t.User).Where(ticket => ticket.Id == id).FirstOrDefault();
+            return context.Tickets.Include(t => t.User).Include(t => t.Responder).Where(ticket => ticket.Id == id).FirstOrDefault();
             //meow
         }
 

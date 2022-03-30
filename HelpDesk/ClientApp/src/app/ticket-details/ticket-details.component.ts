@@ -13,12 +13,14 @@ import { User } from '../user';
 })
 export class TicketDetailsComponent implements OnInit {
 result:Ticket = {} as Ticket;
+responder:User = {} as User;
   constructor(private ticketService:TicketService, private route:ActivatedRoute, private loginService:LoginService) { }
 
   ngOnInit(): void {
     let id: number = Number(this.route.snapshot.paramMap.get("id"));
     this.ticketService.getById(id).subscribe((response:Ticket)=>{
       this.result=response;
+      //this.result.user.id = response.userId;
       console.log(response);
     });
   }
@@ -29,6 +31,7 @@ result:Ticket = {} as Ticket;
       this.ticketService.ResolveTicket(ticketId, form.form.value.answer, myUser.id).subscribe((response: any) => {
         console.log(response);
         this.result.resolution = form.form.value.answer;
+        this.result.responder.id = myUser.id;
       })
     }    
   }
