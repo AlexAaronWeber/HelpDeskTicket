@@ -18,6 +18,12 @@ namespace HelpDesk.Controllers
             return context.Users.ToList();
         }
 
+        [HttpGet("login")]
+        public User login(string username, string password)
+        {
+            return context.Users.FirstOrDefault(u=> u.Name == username && u.Password == password);  
+        }
+
         [HttpPost]
         public User createUser(User newUser)
         {

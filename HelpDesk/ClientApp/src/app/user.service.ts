@@ -14,6 +14,10 @@ export class UserService {
     return this.http.get(this.baseUrl + "api/User")
   }
 
+  login(username:string, password:string ):any{
+    return this.http.get(this.baseUrl+`api/User/login?username=${username}&password=${password}`);
+  }
+
   addUser(newUser:User):any{
     
     return this.http.post(this.baseUrl + "api/User",newUser);

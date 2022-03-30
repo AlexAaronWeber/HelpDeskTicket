@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Favticket } from '../favticket';
 import { Ticket } from '../ticket';
 import { TicketService } from '../ticket.service';
@@ -32,8 +33,15 @@ export class TicketComponent implements OnInit {
   BookmarkTicket(ticketId:number):any{
     this.ticketService.BookmarkTicket(ticketId, this.userId).subscribe((response:any) => {
       console.log(response);
-    })
-    
+    }) 
   }
+
+  // ResolveTicket(ticketId:number, resolution:string, responderId:number){
+
+  //   this.ticketService.ResolveTicket(ticketId, resolution, responderId).subscribe((response:any)=>{
+  //     console.log(response);
+  //   })
+ // }
+
 
 }

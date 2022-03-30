@@ -20,6 +20,5 @@ namespace HelpDesk.Models
         public virtual User? Responder { get; set; }
         public virtual User? User { get; set; }
         public virtual ICollection<FavTicket> FavTickets { get; set; }
-
     }
 }

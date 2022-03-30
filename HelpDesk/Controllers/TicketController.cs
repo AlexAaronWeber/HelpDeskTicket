@@ -1,6 +1,7 @@
 ﻿using HelpDesk.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HelpDesk.Controllers
 {
@@ -14,13 +15,21 @@ namespace HelpDesk.Controllers
         [HttpGet]
         public List<Ticket> GetTickets()
         {
-            return context.Tickets.ToList();
+
+            List<Ticket> result= context.Tickets.ToList();
+            foreach(Ticket ticket in result)
+            {
+                ticket.Responder = context.Users.FirstOrDefault(u=> u.Id == ticket.ResponderId);
+            }
+            return result;
+            // context.Tickets.Include(t=> t.Responder).ToList();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("ById/{id}")]
         public Ticket GetTicketById(int id)
         {
-            return context.Tickets.Find(id);
+            return context.Tickets.Include(t => t.User).Where(ticket => ticket.Id == id).FirstOrDefault();
+            //meow
         }
 
         [HttpGet("{title}")]
@@ -39,7 +48,7 @@ namespace HelpDesk.Controllers
             return newTicket;
         }
 
-        [HttpPut("resolve/{id}")]
+        [HttpPatch("resolve/{id}")]
         // example: /api/Ticket/Resolve/1?resolution=resolved&responderId=2
         public Ticket AddTicketResolution(int id, string resolution, int responderId)
         {

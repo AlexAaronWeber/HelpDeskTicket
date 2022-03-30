@@ -15,7 +15,7 @@ export class TicketService {
   }
 
   getById(id:number):any {
-    return this.http.get(`${this.baseUrl}api/Ticket/${id}`)
+    return this.http.get(`${this.baseUrl}api/Ticket/ById/${id}`)
   }
 
   getByTitle(title:string):any {
@@ -31,6 +31,14 @@ export class TicketService {
     
     return this.http.delete(`${this.baseUrl + this.endpoint}/delete/${ticketId}`);
 
+  }
+
+  // ResolveTicket(id:number, resolution:string, responderId:number){
+  //   return this.http.put(`${this.baseUrl}api/Ticket/resolve/${id}?resolution=${resolution}&responderId=${responderId}`);
+  // }
+
+  ResolveTicket (ticketId:number, resolution:string, responderId:number){
+    return this.http.patch(`${this.baseUrl}api/Ticket/resolve/${ticketId}?resolution=${resolution}&responderId=${responderId}`,{});
   }
 
   BookmarkTicket(ticketId:number, userId:number){

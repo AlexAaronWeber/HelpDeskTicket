@@ -15,9 +15,13 @@ namespace HelpDesk.Models
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Email { get; set; }
+        public string? Password { get; set; }
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<FavTicket> FavTickets { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Ticket> TicketResponders { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Ticket> TicketUsers { get; set; }
     }
 }
