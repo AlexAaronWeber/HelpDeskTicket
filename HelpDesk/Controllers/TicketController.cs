@@ -48,19 +48,19 @@ namespace HelpDesk.Controllers
             return newTicket;
         }
 
-        [HttpPatch("resolve/{id}")]
+        //[HttpPatch("resolve/{id}")]
         // example: /api/Ticket/Resolve/1?resolution=resolved&responderId=2
-        public Ticket AddTicketResolution(int id, string resolution, int responderId)
-        {
-            Ticket result = null;
+        //public Ticket AddTicketResolution(int id, string resolution, int responderId)
+        //{
+        //    Ticket result = null;
 
-            result = context.Tickets.FirstOrDefault(t => t.Id == id);
-            result.Resolution = resolution;
-            result.ResponderId = responderId;
-            context.Tickets.Update(result);
-            context.SaveChanges();
-            return result;
-        }
+        //    result = context.Tickets.FirstOrDefault(t => t.Id == id);
+        //    result.Resolution = resolution;
+        //    result.ResponderId = responderId;
+        //    context.Tickets.Update(result);
+        //    context.SaveChanges();
+        //    return result;
+        //}
 
         [HttpDelete("delete/{id}")]
         public Ticket DeleteTicket(int id) //, int userId
