@@ -26,6 +26,7 @@ export class CreateticketComponent implements OnInit {
       let NewTitle:string = form.form.value.title;
       let NewQuestion:string = form.form.value.question;
       let NewUserId:number = this.loginService.getLogin().id;
+      let NewUser:User = this.loginService.getLogin();
       let NewTicket:Ticket = {
       title: NewTitle,
       question: NewQuestion,
@@ -34,7 +35,7 @@ export class CreateticketComponent implements OnInit {
       responderId: 0,
       resolution: '',
       responder: {} as User,
-      user: {} as User,
+      user: NewUser,
       favTickets: []
     };
     this.ticketService.CreateTicket(NewTicket).subscribe((response:any) => {

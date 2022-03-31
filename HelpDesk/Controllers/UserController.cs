@@ -27,9 +27,17 @@ namespace HelpDesk.Controllers
         [HttpPost]
         public User createUser(User newUser)
         {
-            context.Users.Add(newUser);
-            context.SaveChanges();
-            return newUser;
+            if (newUser.Name == null || newUser.Email == null || newUser.Password == null)
+            {
+                return null; 
+            }
+            else
+            {
+                context.Users.Add(newUser);
+                context.SaveChanges();
+                return newUser;
+            }
+           
         }
         
 
