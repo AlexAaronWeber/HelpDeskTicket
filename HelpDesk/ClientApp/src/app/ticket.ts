@@ -5,7 +5,6 @@ export interface Ticket {
     title:       string;
     question:    string;
     userId:      number;
-    responder:   User;
     user:        User;
     favTickets:  any[];
 }

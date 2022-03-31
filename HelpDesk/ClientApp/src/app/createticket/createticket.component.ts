@@ -32,9 +32,6 @@ export class CreateticketComponent implements OnInit {
       question: NewQuestion,
       userId: NewUserId,
       id: 0,
-      responderId: 0,
-      resolution: '',
-      responder: {} as User,
       user: NewUser,
       favTickets: []
     };

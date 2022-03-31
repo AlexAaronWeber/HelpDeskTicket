@@ -14,16 +14,17 @@ namespace HelpDesk.Controllers
     {
         TicketsDBContext context = new TicketsDBContext();
 
-        [HttpGet(" ")]
-       public List<Response> GetResponsesByID(int TicketId) {
+        [HttpGet]
+        public List<Response> GetResponsesByID(int TicketId)
+        {
 
             return context.Responses.Where(r => r.TicketId == TicketId).ToList();
         }
 
-        [HttpPost(" ")]
+        [HttpPost]
         public Response AddResponsesByID(int TicketID, string resolution, int responderID)
         {
-            Response result = null;
+            Response result = new Response();
             result.Response1 = resolution;
             result.TicketId = TicketID;
             result.ResponderId = responderID;
@@ -32,14 +33,16 @@ namespace HelpDesk.Controllers
             return result;
 
         }
-        [HttpDelete(" ")]
+        [HttpDelete]
         public void DeleteResponseByID(int responseId)
         {
             Response result = null;
             result = context.Responses.FirstOrDefault(r => r.Id == responseId);
-            context.Responses.Remove(result);
-            context.SaveChanges();
-
+            if (result != null)
+            {
+                context.Responses.Remove(result);
+                context.SaveChanges();
+            }
         }
     }
 }

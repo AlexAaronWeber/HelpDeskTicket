@@ -9,8 +9,7 @@ namespace HelpDesk.Models
         {
             FavTickets = new HashSet<FavTicket>();
             Responses = new HashSet<Response>();
-            TicketResponders = new HashSet<Ticket>();
-            TicketUsers = new HashSet<Ticket>();
+            Tickets = new HashSet<Ticket>();
         }
 
         public int Id { get; set; }
@@ -18,9 +17,12 @@ namespace HelpDesk.Models
         public string? Email { get; set; }
         public string? Password { get; set; }
 
+        [System.Text.Json.Serialization.JsonIgnore]
+
         public virtual ICollection<FavTicket> FavTickets { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Response> Responses { get; set; }
-        public virtual ICollection<Ticket> TicketResponders { get; set; }
-        public virtual ICollection<Ticket> TicketUsers { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

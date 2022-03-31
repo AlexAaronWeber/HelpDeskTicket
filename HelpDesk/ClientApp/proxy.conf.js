@@ -9,7 +9,8 @@ const PROXY_CONFIG = [
       "/weatherforecast",
       "/api/Ticket",
       "/api/User",
-      "/api/FavTicket"
+      "/api/FavTicket",
+      "/api/Response"
    ],
     target: target,
     secure: false,

@@ -17,10 +17,10 @@ namespace HelpDesk.Controllers
         {
 
             List<Ticket> result= context.Tickets.ToList();
-            foreach(Ticket ticket in result)
-            {
-                ticket.Responder = context.Users.FirstOrDefault(u=> u.Id == ticket.ResponderId);
-            }
+            //foreach(Ticket ticket in result)
+            //{
+            //    ticket.Responder = context.Users.FirstOrDefault(u=> u.Id == ticket.ResponderId);
+            //}
             return result;
             // context.Tickets.Include(t=> t.Responder).ToList();
         }
@@ -28,7 +28,7 @@ namespace HelpDesk.Controllers
         [HttpGet("ById/{id}")]
         public Ticket GetTicketById(int id)
         {
-            return context.Tickets.Include(t => t.User).Include(t => t.Responder).Where(ticket => ticket.Id == id).FirstOrDefault();
+            return context.Tickets.Include(t => t.User).Where(ticket => ticket.Id == id).FirstOrDefault();
             //meow
         }
 
@@ -41,7 +41,6 @@ namespace HelpDesk.Controllers
         [HttpPost]
         public Ticket CreateTicket(Ticket newTicket)
         {
-            newTicket.ResponderId = null;
             // newTicket.respo
             context.Tickets.Add(newTicket);
             context.SaveChanges();

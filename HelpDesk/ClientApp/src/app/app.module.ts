@@ -16,6 +16,7 @@ import { CreateticketComponent } from './createticket/createticket.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
 import { LoginComponent } from './login/login.component';
+import { ResponseComponent } from './response/response.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { LoginComponent } from './login/login.component';
     CreateticketComponent,
     CreateUserComponent,
     TicketDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    ResponseComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

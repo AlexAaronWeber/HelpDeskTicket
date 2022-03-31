@@ -2,10 +2,12 @@
 
 <div>
     <h3>{{ result.title }}</h3>
-    <p>{{ result.user.name }}</p>
+    <!-- <p>{{ result.user.name }}</p> -->
     <p>{{ result.question }}</p>
-    <p>{{ result.resolution }}</p> 
-    <p>{{ result.responder.name }}</p>  
+    <br />
+    <div *ngFor="let r of responses">
+        {{r.responder}} {{r.response1}}
+    </div>  
         <form class="form" #addForm="ngForm" (ngSubmit)="ResolveTicket(result.id, addForm)">
             Answer: <input type="text" name="answer" ngModel />
             <button>Submit</button>
