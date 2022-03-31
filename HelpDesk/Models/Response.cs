@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HelpDesk
+namespace HelpDesk.Models
 {
     public partial class Response
     {

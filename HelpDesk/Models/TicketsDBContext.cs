@@ -17,6 +17,7 @@ namespace HelpDesk.Models
         }
 
         public virtual DbSet<FavTicket> FavTickets { get; set; } = null!;
+        public virtual DbSet<Response> Responses { get; set; } = null!;
         public virtual DbSet<Ticket> Tickets { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
@@ -25,12 +26,8 @@ namespace HelpDesk.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                //optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=TicketsDB;Trusted_Connection=True;");
-                optionsBuilder.UseSqlServer(
-                @"Server=localhost; Database=TicketsDB;UId=SA;Password=MyPass@word;");
+                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=TicketsDB;Trusted_Connection=True;");
             }
-
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -46,12 +43,34 @@ namespace HelpDesk.Models
                 entity.HasOne(d => d.Ticket)
                     .WithMany(p => p.FavTickets)
                     .HasForeignKey(d => d.TicketId)
-                    .HasConstraintName("FK__FavTicket__Ticke__403A8C7D");
+                    .HasConstraintName("FK__FavTicket__Ticke__3C69FB99");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.FavTickets)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__FavTicket__UserI__412EB0B6");
+                    .HasConstraintName("FK__FavTicket__UserI__3D5E1FD2");
+            });
+
+            modelBuilder.Entity<Response>(entity =>
+            {
+                entity.ToTable("Response");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Response1)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasColumnName("Response");
+
+                entity.HasOne(d => d.Responder)
+                    .WithMany(p => p.Responses)
+                    .HasForeignKey(d => d.ResponderId)
+                    .HasConstraintName("FK__Response__Respon__412EB0B6");
+
+                entity.HasOne(d => d.Ticket)
+                    .WithMany(p => p.Responses)
+                    .HasForeignKey(d => d.TicketId)
+                    .HasConstraintName("FK__Response__Ticket__403A8C7D");
             });
 
             modelBuilder.Entity<Ticket>(entity =>
@@ -59,8 +78,6 @@ namespace HelpDesk.Models
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Question).HasMaxLength(255);
-
-                entity.Property(e => e.Resolution).HasMaxLength(255);
 
                 entity.Property(e => e.ResponderId).HasColumnName("ResponderID");
 
@@ -71,12 +88,12 @@ namespace HelpDesk.Models
                 entity.HasOne(d => d.Responder)
                     .WithMany(p => p.TicketResponders)
                     .HasForeignKey(d => d.ResponderId)
-                    .HasConstraintName("FK__Tickets__Respond__3D5E1FD2");
+                    .HasConstraintName("FK__Tickets__Respond__398D8EEE");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.TicketUsers)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Tickets__UserID__3C69FB99");
+                    .HasConstraintName("FK__Tickets__UserID__38996AB5");
             });
 
             modelBuilder.Entity<User>(entity =>

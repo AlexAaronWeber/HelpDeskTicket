@@ -8,6 +8,7 @@ namespace HelpDesk.Models
         public User()
         {
             FavTickets = new HashSet<FavTicket>();
+            Responses = new HashSet<Response>();
             TicketResponders = new HashSet<Ticket>();
             TicketUsers = new HashSet<Ticket>();
         }
@@ -17,11 +18,9 @@ namespace HelpDesk.Models
         public string? Email { get; set; }
         public string? Password { get; set; }
 
-        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<FavTicket> FavTickets { get; set; }
-        [System.Text.Json.Serialization.JsonIgnore]
+        public virtual ICollection<Response> Responses { get; set; }
         public virtual ICollection<Ticket> TicketResponders { get; set; }
-        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Ticket> TicketUsers { get; set; }
     }
 }
