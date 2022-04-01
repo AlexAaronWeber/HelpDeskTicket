@@ -19,9 +19,7 @@ namespace HelpDesk.Models
 
         public virtual User? Responder { get; set; }
         public virtual User? User { get; set; }
-        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<FavTicket> FavTickets { get; set; }
-        [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<Response> Responses { get; set; }
     }
 }
