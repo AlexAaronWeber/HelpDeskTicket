@@ -1,5 +1,7 @@
 <div *ngFor="let f of favTickets">
-    {{f.ticketId}} {{f.userId}}
     {{f.ticket.title}} {{f.ticket.question}} 
+    <div>
+        <a routerLink="/ticketdeets/{{f.ticketId}}">View Ticket</a>
+    </div>
     <button (click)="UnBookmarkFavTicket(f.id)">Delete</button>  
 </div>

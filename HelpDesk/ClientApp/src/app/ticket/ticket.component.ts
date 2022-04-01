@@ -57,6 +57,16 @@ export class TicketComponent implements OnInit {
     this.tickets.push(newT);
   }
 
+  isLoggedIn(userId:number):boolean{
+    if (this.loginService.getLogin().id != userId){
+      return false;
+    }
+    else{
+      
+      return true;
+    }
+  }
+
   // ResolveTicket(ticketId:number, resolution:string, responderId:number){
 
   //   this.ticketService.ResolveTicket(ticketId, resolution, responderId).subscribe((response:any)=>{

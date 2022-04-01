@@ -5,6 +5,7 @@
     <!-- <p>{{ result.user.name }}</p> -->
     <p>{{ result.question }}</p>
     <br />
+    <button (click)="BookmarkTicket(result.id)">Favorite</button>
     <div *ngFor="let r of responses">
         <p>{{r.responder}} {{r.response1}}</p>
         <button (click)="DeleteResponse(r.id)"> Delete </button>        

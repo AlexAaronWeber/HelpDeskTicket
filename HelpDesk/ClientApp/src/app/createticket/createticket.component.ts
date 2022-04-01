@@ -39,6 +39,7 @@ export class CreateticketComponent implements OnInit {
       console.log("Ticket has been added");
       console.log(response)
       this.result.emit(response);
+      form.resetForm();
     });
     }
     else{

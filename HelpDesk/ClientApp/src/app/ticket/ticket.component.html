@@ -4,5 +4,7 @@
     <p>{{ t.question }}</p>
     <a routerLink="/ticketdeets/{{t.id}}">View Ticket</a>
     <button (click)="BookmarkTicket(t.id)">Favorite</button>
-    <button (click)="DeleteTicket(t.id)">Delete</button>
+    <div *ngIf="isLoggedIn(t.userId)">
+        <button (click)="DeleteTicket(t.id)">Delete</button>
+    </div>
 </div>

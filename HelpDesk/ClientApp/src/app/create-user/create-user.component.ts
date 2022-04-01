@@ -30,7 +30,8 @@ export class CreateUserComponent implements OnInit {
     };
     this.userService.addUser(NewUser).subscribe((response:any) => {
       console.log("Ticket has been added");
-      console.log(response)
+      console.log(response);
+      form.resetForm();
     
   });
 }

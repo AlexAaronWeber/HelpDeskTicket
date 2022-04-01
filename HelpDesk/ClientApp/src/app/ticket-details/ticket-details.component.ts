@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../login.service';
 import { ResponseService } from '../response.service';
 import { Ticket } from '../ticket';
@@ -17,7 +17,7 @@ export class TicketDetailsComponent implements OnInit {
   responses:Response[] = [];
 result:Ticket = {} as Ticket;
 responder:User = {} as User;
-  constructor(private responseService:ResponseService, private ticketService:TicketService, private route:ActivatedRoute, private loginService:LoginService) { }
+  constructor(private responseService:ResponseService, private ticketService:TicketService, private route:ActivatedRoute, private loginService:LoginService, private router:Router) { }
 
   ngOnInit(): void {
     let id: number = Number(this.route.snapshot.paramMap.get("id"));
@@ -52,6 +52,17 @@ responder:User = {} as User;
       console.log(response);
       this.responses.splice(responseId,1);
     })
+  }
+  BookmarkTicket(ticketId:number):any{
+    if(this.loginService.getLogin() != null){
+      this.ticketService.BookmarkTicket(ticketId).subscribe((response:any) => {
+        console.log(response);
+      }) 
+    }
+    else{
+      this.router.navigate(["/login"])
+    }
+
   }
 
 

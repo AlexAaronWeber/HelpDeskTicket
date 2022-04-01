@@ -27,34 +27,19 @@
           >
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/ticket']"
-              >Ticket</a
-            >
-          </li>
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isLoggedIn() == false">
             <a class="nav-link text-dark" [routerLink]="['/createuser']"
               > Create User</a
-            >
-          </li>
+              >
+            </li>
+            <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isLoggedIn()">
+              <a class="nav-link text-dark" [routerLink]="['/favticket/:id']"
+                > Favorites</a
+              >
+            </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/login']">
               {{ loginText }}</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isLoggedIn()">
-            <a class="nav-link text-dark" [routerLink]="['/favticket/:id']"
-              > Favorites</a
             >
           </li>
         </ul>
