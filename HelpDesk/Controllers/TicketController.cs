@@ -15,14 +15,8 @@ namespace HelpDesk.Controllers
         [HttpGet]
         public List<Ticket> GetTickets()
         {
-
-            List<Ticket> result= context.Tickets.ToList();
-            //foreach(Ticket ticket in result)
-            //{
-            //    ticket.Responder = context.Users.FirstOrDefault(u=> u.Id == ticket.ResponderId);
-            //}
+            List<Ticket> result = context.Tickets.ToList();
             return result;
-            // context.Tickets.Include(t=> t.Responder).ToList();
         }
 
         [HttpGet("ById/{id}")]
@@ -47,30 +41,22 @@ namespace HelpDesk.Controllers
             return newTicket;
         }
 
-        //[HttpPatch("resolve/{id}")]
-        // example: /api/Ticket/Resolve/1?resolution=resolved&responderId=2
-        //public Ticket AddTicketResolution(int id, string resolution, int responderId)
-        //{
-        //    Ticket result = null;
-
-        //    result = context.Tickets.FirstOrDefault(t => t.Id == id);
-        //    result.Resolution = resolution;
-        //    result.ResponderId = responderId;
-        //    context.Tickets.Update(result);
-        //    context.SaveChanges();
-        //    return result;
-        //}
-
         [HttpDelete("delete/{id}")]
         public Ticket DeleteTicket(int id) //, int userId
         {
             Ticket result = null;
             List<FavTicket> result2 = null;
+            List<Response> result3 = null;
             //Removes references of this ticket in the FavTicketTable
             result2 = context.FavTickets.Where(x => x.TicketId == id).ToList();
-            if(result2.Count > 0)
+            if (result2.Count > 0)
             {
                 context.FavTickets.RemoveRange(result2);
+            }
+            result3 = context.Responses.Where(r => r.TicketId == id).ToList();
+            if (result3.Count > 0)
+            {
+                context.Responses.RemoveRange(result3);
             }
             result = context.Tickets.FirstOrDefault(t => t.Id == id);
             context.Tickets.Remove(result);

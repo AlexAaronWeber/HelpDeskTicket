@@ -30,5 +30,17 @@ namespace HelpDesk.Controllers
         {
             return context.FavTickets.Include(fav => fav.Ticket).Where(t => t.UserId == userId).ToList();
         }
+
+        [HttpDelete("Delete/{Id}")]
+        public FavTicket UnBookmark(int Id)
+        {
+            FavTicket result = null;
+            result = context.FavTickets.FirstOrDefault(t => t.Id == Id);
+            context.FavTickets.Remove(result);
+            context.SaveChanges();
+
+            return result;
+        }
+
     }
 }

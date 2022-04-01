@@ -1,4 +1,5 @@
 <div *ngFor="let f of favTickets">
     {{f.ticketId}} {{f.userId}}
-    {{f.ticket.title}} {{f.ticket.question}}   
+    {{f.ticket.title}} {{f.ticket.question}} 
+    <button (click)="UnBookmarkFavTicket(f.id)">Delete</button>  
 </div>

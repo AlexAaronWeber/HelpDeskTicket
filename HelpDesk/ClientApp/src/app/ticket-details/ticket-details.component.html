@@ -6,7 +6,8 @@
     <p>{{ result.question }}</p>
     <br />
     <div *ngFor="let r of responses">
-        {{r.responder}} {{r.response1}}
+        <p>{{r.responder}} {{r.response1}}</p>
+        <button (click)="DeleteResponse(r.id)"> Delete </button>        
     </div>  
         <form class="form" #addForm="ngForm" (ngSubmit)="ResolveTicket(result.id, addForm)">
             Answer: <input type="text" name="answer" ngModel />

@@ -5,6 +5,12 @@
     <input type="password" name="password" ngModel required>
     <button>Login</button>
 </form>
+<br />
+<div>
+    <p>Don't have an account?</p>
+    <!-- <a routerLink="/createuser"> Click Here</a> -->
+    <p> <a routerLink="/createuser"> Click Here</a> to create one!</p>
+</div>
 
 <div *ngIf="isLoggedIn()">
     <h1>Are you sure you want to log out?</h1>

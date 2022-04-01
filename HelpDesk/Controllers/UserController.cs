@@ -8,11 +8,9 @@ namespace HelpDesk.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-
         TicketsDBContext context = new TicketsDBContext();
 
         [HttpGet]
-
         public List<User> getUsers()
         {
             return context.Users.ToList();
@@ -36,10 +34,7 @@ namespace HelpDesk.Controllers
                 context.Users.Add(newUser);
                 context.SaveChanges();
                 return newUser;
-            }
-           
+            }  
         }
-        
-
     }
 }

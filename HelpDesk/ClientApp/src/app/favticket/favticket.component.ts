@@ -20,4 +20,13 @@ export class FavticketComponent implements OnInit {
       console.log(response)
     })
   }
+
+  UnBookmarkFavTicket(ticketId:number){
+    let index: number = this.favTickets.findIndex(t => t.id == ticketId);
+    this.favTickets.splice(index, 1)
+    this.favTicketService.UnBookmarkFavTicket(ticketId).subscribe((response:any) => {
+      console.log(response)
+      this.favTickets.splice(ticketId,1)
+    })
+  }
 }

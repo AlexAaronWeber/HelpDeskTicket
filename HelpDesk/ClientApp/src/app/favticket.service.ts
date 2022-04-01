@@ -14,4 +14,8 @@ export class FavticketService {
     let myUser:User = this.loginService.getLogin();
     return this.http.get(`${this.baseUrl}api/FavTicket/GetAll/${myUser.id}`)
   }
+
+  UnBookmarkFavTicket(ticketId: number){
+    return this.http.delete(`${this.baseUrl}api/FavTicket/Delete/${ticketId}`)
+  }
 }

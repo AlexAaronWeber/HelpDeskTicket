@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Favticket } from '../favticket';
+import { LoginService } from '../login.service';
 import { Ticket } from '../ticket';
 import { TicketService } from '../ticket.service';
 
@@ -15,7 +17,7 @@ export class TicketComponent implements OnInit {
   
   tickets:Ticket[] = [];
   userId:number = 1;
-  constructor(private ticketService:TicketService) { }
+  constructor(private ticketService:TicketService, private loginService:LoginService, private router:Router) { }
 
 
   ngOnInit(): void {
@@ -26,18 +28,29 @@ export class TicketComponent implements OnInit {
   }
 
   DeleteTicket(ticketId: number):void{
-    let index: number = this.tickets.findIndex(t => t.id == ticketId);
-    this.tickets.splice(index, 1);
-    this.ticketService.DeleteTicket(ticketId).subscribe((response:any) => {
-      console.log(response);
-      this.tickets.splice(ticketId,1);
-    })
+    if(this.loginService.getLogin() != null){
+      let index: number = this.tickets.findIndex(t => t.id == ticketId);
+      this.tickets.splice(index, 1);
+      this.ticketService.DeleteTicket(ticketId).subscribe((response:any) => {
+        console.log(response);
+        this.tickets.splice(ticketId,1);
+      }) 
+    }
+    else{
+      this.router.navigate(["/login"])
+    }
   }
 
   BookmarkTicket(ticketId:number):any{
-    this.ticketService.BookmarkTicket(ticketId).subscribe((response:any) => {
-      console.log(response);
-    }) 
+    if(this.loginService.getLogin() != null){
+      this.ticketService.BookmarkTicket(ticketId).subscribe((response:any) => {
+        console.log(response);
+      }) 
+    }
+    else{
+      this.router.navigate(["/login"])
+    }
+
   }
 
   addNewTicket(newT:Ticket){
