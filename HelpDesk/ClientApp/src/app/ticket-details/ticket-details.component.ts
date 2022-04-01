@@ -33,14 +33,18 @@ responder:User = {} as User;
   }
 
   ResolveTicket(ticketId:number, form:NgForm): void {
-    // if(this.loginService.getLogin() != null){
-    //   let myUser:User = this.loginService.getLogin();
-    //   this.ticketService.ResolveTicket(ticketId, form.form.value.answer, myUser.id).subscribe((response: any) => {
-    //     console.log(response);
-    //     this.result.resolution = form.form.value.answer;
-    //     this.result.responder.id = myUser.id;
-    //   })
-    // }    
+    let aResponse: Response = {} as Response;
+    aResponse.response1 = form.form.value.answer;
+    //aResponse.responder=  this.loginService.getLogin().name;
+    console.log(this.result.id);
+    console.log(form.form.value.answer);
+    this.responses.push(aResponse);
+    this.responseService.AddResponsesByID(ticketId,form.form.value.answer).subscribe((response: any) => {
+      console.log(response);
+      form.resetForm();
+    })
+
   }
+
 
 }
