@@ -30,7 +30,7 @@ import { ResponseComponent } from './response/response.component';
     CreateUserComponent,
     TicketDetailsComponent,
     LoginComponent,
-    ResponseComponent
+    ResponseComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
