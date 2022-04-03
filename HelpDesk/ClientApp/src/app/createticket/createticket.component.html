@@ -1,7 +1,19 @@
-<form class="form" #addForm="ngForm" (ngSubmit)="addTicket(addForm)">
-    title:<input type="text" name="title" ngModel />
-    <br />
-    question:<input type="text" name="question" ngModel />
-    <br />
-    <button>Add Ticket</button>
-  </form>
+
+<div >
+  <div>
+    <form class="form" #addForm="ngForm" (ngSubmit)="addTicket(addForm)">
+      <div class="row">
+        <p class="col">Title:</p>
+        <input class="col-8" type="text" name="title" ngModel />
+      </div>
+      <div class="row">
+        <p class="col">Question:</p>
+        <textarea class="col-8" name="question" cols="30" rows="3" ngModel></textarea>
+      </div>
+
+        <button class="col-3 offset-9" >Submit</button>
+      
+    </form>
+  </div>
+</div>
+

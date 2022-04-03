@@ -31,7 +31,6 @@ namespace HelpDesk.Controllers
             context.Responses.Update(result);
             context.SaveChanges();
             return result;
-
         }
 
         [HttpDelete]
