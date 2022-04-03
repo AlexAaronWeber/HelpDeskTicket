@@ -1,20 +1,19 @@
-
-<div class="container">
-    <div class="row col-6 offset-3" >
+<div>
+    <div class="row col-8 offset-2" >
         <app-createticket (result)="addNewTicket($event)"></app-createticket>
     </div>
     
     <div *ngFor="let t of tickets" class="row">
-        <div class="col-6 offset-3">
-            <h3>{{ t.title }}</h3>
+        <div class="col-8 offset-2 ticket">
+            <h4>{{ t.title }}</h4>
         <p>{{ t.question }}</p>
         <a routerLink="/ticketdeets/{{t.id}}">View Ticket</a>
         <div>
-            <button (click)="BookmarkTicket(t.id)">Favorite</button>
+            <i (click)="BookmarkTicket(t.id)" class="fa-solid fa-star icon"></i>
         </div>
         
         <div *ngIf="isLoggedIn(t.userId)">
-            <button (click)="DeleteTicket(t.id)">Delete</button>
+            <i (click)="DeleteTicket(t.id)" class="fa-solid fa-trash-can icon"></i>
         </div>
 
         </div>

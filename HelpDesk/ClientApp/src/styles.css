@@ -2,7 +2,7 @@
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  color: white;
 }
 
 code {
@@ -13,4 +13,21 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+body{
+  background-color: #555555;
+}
+
+.ticket{
+  border:black 1px solid;
+  background-color: #777777;
+}
+
+.icon{
+  cursor: pointer;
+}
+
+.icon:hover{
+  color:white;
 }

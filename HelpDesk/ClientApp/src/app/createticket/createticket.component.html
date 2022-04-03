@@ -3,15 +3,15 @@
   <div>
     <form class="form" #addForm="ngForm" (ngSubmit)="addTicket(addForm)">
       <div class="row">
-        <p class="col">Title:</p>
-        <input class="col-8" type="text" name="title" ngModel />
+        <h5 class="col">Title:</h5>
+        <input class="col-sm-8" type="text" name="title" ngModel />
       </div>
       <div class="row">
-        <p class="col">Question:</p>
-        <textarea class="col-8" name="question" cols="30" rows="3" ngModel></textarea>
+        <h5 class="col">Question:</h5>
+        <textarea class="col-sm-8" name="question" cols="30" rows="3" ngModel></textarea>
       </div>
 
-        <button class="col-3 offset-9" >Submit</button>
+        <button class="col-sm-3 offset-9" >Submit</button>
       
     </form>
   </div>
