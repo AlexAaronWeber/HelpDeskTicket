@@ -1,19 +1,25 @@
 
 
 <div>
-    <h3>{{ result.title }}</h3>
-    <!-- <p>{{ result.user.name }}</p> -->
-    <p>{{ result.question }}</p>
+    <div class="ticket">
+        <h3 class="titles">{{ result.title }}</h3>
+        <!-- <p>{{ result.user.name }}</p> -->
+        <p>{{ result.question }}</p>
+        <i (click)="BookmarkTicket(result.id)" class="fa-solid fa-star icon"></i>
+    </div>
     <br />
-    <button (click)="BookmarkTicket(result.id)">Favorite</button>
-    <div *ngFor="let r of responses">
-        <p>{{r.responder}} {{r.response1}}</p>
-        <button (click)="DeleteResponse(r.id)"> Delete </button>        
-    </div>  
+    <br>
         <form class="form" #addForm="ngForm" (ngSubmit)="ResolveTicket(result.id, addForm)">
-            Answer: <input type="text" name="answer" ngModel />
-            <input type="submit" value="Submit" />
+            <h4 class="titles">Answer:</h4>
+            <textarea name="answer" ngModel class="col-sm-10" cols="30" rows="3"></textarea>
+            <input type="submit" value="Submit" class="col-sm-3 offset-12"/>
         </form>
+        <br>
+        <h3 class="titles">Answers</h3>
+        <div class="ticket" *ngFor="let r of responses">
+            <p>{{ r.responderId }} {{ r.response1 }}</p>
+            <i (click)="DeleteResponse(r.id)" class="fa-solid fa-trash-can icon"></i>        
+        </div>  
     
 </div>
 

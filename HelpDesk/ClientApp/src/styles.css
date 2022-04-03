@@ -31,3 +31,16 @@ body{
 .icon:hover{
   color:white;
 }
+
+.sticky {
+  position: fixed;
+  margin-top: 0;
+  width: 100%
+}
+
+.titles {
+  font-family: 'Nixie One', cursive;
+  font-family: 'Noto Serif', serif;
+  font-family: 'Saira Condensed', sans-serif;
+  font-weight: bold;
+}

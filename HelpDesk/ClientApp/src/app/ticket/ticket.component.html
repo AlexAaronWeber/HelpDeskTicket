@@ -5,7 +5,7 @@
     
     <div *ngFor="let t of tickets" class="row">
         <div class="col-8 offset-2 ticket">
-            <h4>{{ t.title }}</h4>
+            <h4 class="titles">{{ t.title }}</h4>
         <p>{{ t.question }}</p>
         <a routerLink="/ticketdeets/{{t.id}}">View Ticket</a>
         <div>
