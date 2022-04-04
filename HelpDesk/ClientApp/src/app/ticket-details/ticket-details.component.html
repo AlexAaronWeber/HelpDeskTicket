@@ -19,9 +19,8 @@
         <div class="ticket" *ngFor="let r of responses">
             <p>User: {{ r.responder!.name }} </p>
             <p> {{ r.response1 }} </p>
-            <i (click)="DeleteResponse(r.id)" class="fa-solid fa-trash-can icon"></i>        
-        </div>  
-    
+            <i (click)="DeleteResponse(r.id)" class="fa-solid fa-trash-can icon"></i>
+        </div>
 </div>
 
 

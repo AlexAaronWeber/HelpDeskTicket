@@ -1,23 +1,20 @@
 <div>
     <div class="row col-8 offset-2" >
         <app-createticket (result)="addNewTicket($event)"></app-createticket>
-    </div>
-    
+    </div> 
     <div *ngFor="let t of tickets" class="row">
         <div class="col-8 offset-2 ticket">
-            <h4 class="titles">{{ t.title }}</h4>
+            <div class="d-flex justify-content-between">
+                <h4 class="titles">{{ t.title }}</h4>
+                <i (click)="BookmarkTicket(t.id)" class="fa-solid fa-star icon"></i>
+            </div>
         <p>{{ t.question }}</p>
-        <a routerLink="/ticketdeets/{{t.id}}">View Ticket</a>
-        <div>
-            <i (click)="BookmarkTicket(t.id)" class="fa-solid fa-star icon"></i>
+        <div class="d-flex justify-content-between">
+            <a routerLink="/ticketdeets/{{t.id}}">View Ticket</a> 
+            <div *ngIf="isLoggedIn(t.userId)">
+                <i (click)="DeleteTicket(t.id)" class="fa-solid fa-trash-can icon"></i>
+            </div>
         </div>
-        
-        <div *ngIf="isLoggedIn(t.userId)">
-            <i (click)="DeleteTicket(t.id)" class="fa-solid fa-trash-can icon"></i>
-        </div>
-
-        </div>
-        
     </div>
 </div>
 
