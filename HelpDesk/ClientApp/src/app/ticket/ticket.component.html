@@ -6,7 +6,8 @@
         <div class="col-8 offset-2 ticket">
             <div class="d-flex justify-content-between">
                 <h4 class="titles">{{ t.title }}</h4>
-                <i (click)="BookmarkTicket(t.id)" class="fa-solid fa-star icon"></i>
+                <i *ngIf="isFavorited(t)" (click)="removeFavorite(t)" class="fa-solid fa-star icon"></i>
+                <i *ngIf="isFavorited(t) == false" (click)="BookmarkTicket(t.id)" class="fa-regular fa-star icon"></i>
             </div>
         <p>{{ t.question }}</p>
         <div class="d-flex justify-content-between">

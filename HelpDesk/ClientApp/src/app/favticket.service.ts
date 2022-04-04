@@ -15,7 +15,7 @@ export class FavticketService {
     return this.http.get(`${this.baseUrl}api/FavTicket/GetAll/${myUser.id}`)
   }
 
-  UnBookmarkFavTicket(ticketId: number){
+  UnBookmarkFavTicket(ticketId: number):any{
     return this.http.delete(`${this.baseUrl}api/FavTicket/Delete/${ticketId}`)
   }
 }

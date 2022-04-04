@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Favticket } from '../favticket';
+import { FavticketService } from '../favticket.service';
 import { LoginService } from '../login.service';
 import { Ticket } from '../ticket';
 import { TicketService } from '../ticket.service';
@@ -17,10 +18,14 @@ export class TicketComponent implements OnInit {
   
   tickets:Ticket[] = [];
   userId:number = 1;
-  constructor(private ticketService:TicketService, private loginService:LoginService, private router:Router) { }
+  favTickets:Favticket[] = [];
+  constructor(private ticketService:TicketService, private loginService:LoginService, private router:Router, private favTicketService: FavticketService) { }
 
 
   ngOnInit(): void {
+    this.favTicketService.getAllFavTickets().subscribe((response:Favticket[]) => {
+      this.favTickets= response;
+    } )
     this.ticketService.getAllTickets().subscribe((response:Ticket[]) => {
       this.tickets = response;
       console.log(response);
@@ -45,12 +50,33 @@ export class TicketComponent implements OnInit {
     if(this.loginService.getLogin() != null){
       this.ticketService.BookmarkTicket(ticketId).subscribe((response:any) => {
         console.log(response);
+        this.favTickets.push(response);
       }) 
     }
     else{
       this.router.navigate(["/login"])
     }
+  }
 
+  isFavorited(ticket:Ticket):any{
+    let index = this.favTickets.findIndex(t => t.ticketId == ticket.id)
+    if (index == -1){
+      return false;
+    }
+    else{
+      return true;
+    }
+
+  }
+
+  removeFavorite(ticket:Ticket){
+    let index = this.favTickets.findIndex(t => t.ticketId==ticket.id);
+    let result = this.favTickets[index];
+    this.favTickets.splice(index,1);
+    this.favTicketService.UnBookmarkFavTicket(result.id).subscribe((response:Favticket) => {
+      console.log(response);
+
+    })
   }
 
   addNewTicket(newT:Ticket){
@@ -66,6 +92,10 @@ export class TicketComponent implements OnInit {
       return true;
     }
   }
+
+
+
+
 
   // ResolveTicket(ticketId:number, resolution:string, responderId:number){
 

@@ -49,12 +49,13 @@ responder:User = {} as User;
 
   DeleteResponse(responseId: number):void{
     console.log(responseId+"this is the response error")
-    let index: number = this.responses.findIndex(r => r.id == responseId);
-    this.responses.splice(index, 1);
-    this.responseService.DeleteResponseByID(responseId).subscribe((response:any) => {
-      console.log(response);
-      //this.responses.splice(responseId,1);
-    })
+    if(this.loginService.getLogin() != null){
+      let index: number = this.responses.findIndex(r => r.id == responseId);
+      this.responses.splice(index, 1);
+      this.responseService.DeleteResponseByID(responseId).subscribe((response:any) => {
+        console.log(response);
+      })
+    }  
   }
   BookmarkTicket(ticketId:number):any{
     if(this.loginService.getLogin() != null){
