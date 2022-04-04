@@ -38,19 +38,22 @@ responder:User = {} as User;
     //aResponse.responder=  this.loginService.getLogin().name;
     console.log(this.result.id);
     console.log(form.form.value.answer);
-    this.responses.push(aResponse);
     this.responseService.AddResponsesByID(ticketId,form.form.value.answer).subscribe((response: any) => {
+      //aResponse.responder=response.responder;
+      aResponse=response;
+      this.responses.push(aResponse);
       console.log(response);
       form.resetForm();
     })
   }
 
   DeleteResponse(responseId: number):void{
+    console.log(responseId+"this is the response error")
     let index: number = this.responses.findIndex(r => r.id == responseId);
     this.responses.splice(index, 1);
     this.responseService.DeleteResponseByID(responseId).subscribe((response:any) => {
       console.log(response);
-      this.responses.splice(responseId,1);
+      //this.responses.splice(responseId,1);
     })
   }
   BookmarkTicket(ticketId:number):any{

@@ -17,7 +17,7 @@
         <br>
         <h3 class="titles">Answers</h3>
         <div class="ticket" *ngFor="let r of responses">
-            <p>{{ r.responderId }} {{ r.response1 }}</p>
+            <p>{{ r.responder!.name }} {{ r.response1 }}</p>
             <i (click)="DeleteResponse(r.id)" class="fa-solid fa-trash-can icon"></i>        
         </div>  
     

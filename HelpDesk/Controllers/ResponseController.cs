@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HelpDesk.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,7 +19,8 @@ namespace HelpDesk.Controllers
         public List<Response> GetResponsesByID(int TicketId)
         {
 
-            return context.Responses.Where(r => r.TicketId == TicketId).ToList();
+            return context.Responses.Include(r => r.Responder).Where(r => r.TicketId == TicketId).ToList();
+   
         }
 
         [HttpPost]
@@ -30,6 +32,7 @@ namespace HelpDesk.Controllers
             result.ResponderId = responderID;
             context.Responses.Update(result);
             context.SaveChanges();
+            result.Responder = context.Users.Find(responderID);
             return result;
         }
 

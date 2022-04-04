@@ -17,6 +17,7 @@ namespace HelpDesk.Models
         public int? UserId { get; set; }
         public int? ResponderId { get; set; }
 
+        //[System.Text.Json.Serialization.JsonIgnore]
         public virtual User? Responder { get; set; }
         public virtual User? User { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
