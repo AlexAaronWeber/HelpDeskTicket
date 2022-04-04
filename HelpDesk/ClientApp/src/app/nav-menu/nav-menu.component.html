@@ -1,7 +1,9 @@
-<header>
+<header class="sticky-top">
   <nav
-    class="stick navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    
+  class="stick navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3"
   >
+   
     <div class="container">
       <a class="navbar-brand" [routerLink]="['/']">HelpDesk</a>
       <button
@@ -25,7 +27,7 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link text-white" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isLoggedIn() == false">
             <a class="nav-link text-dark" [routerLink]="['/createuser']"
@@ -33,12 +35,12 @@
               >
             </li>
             <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isLoggedIn()">
-              <a class="nav-link text-dark" [routerLink]="['/favticket/:id']"
+              <a class="nav-link text-white" [routerLink]="['/favticket/:id']"
                 > Favorites</a
               >
             </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/login']">
+            <a class="nav-link text-white" [routerLink]="['/login']">
               {{ loginText }}</a
             >
           </li>
